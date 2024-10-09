@@ -270,6 +270,68 @@
     .pulse {
         animation: pulse 2s infinite;
     }
+
+    .quick-nav {
+        background-color: var(--secondary-color);
+        padding: 10px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .quick-nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .quick-nav li {
+        margin: 0 10px;
+    }
+
+    .quick-nav a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .quick-nav a:hover {
+        color: var(--text-color);
+    }
+
+    .tips, .strategy {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .tip-item, .strategy-item {
+        background-color: rgba(30, 35, 40, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .tip-item:hover, .strategy-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .tip-item h3, .strategy-item h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+    }
+
+    .tip-item ul, .strategy-item ul {
+        padding-left: 20px;
+    }
+
+    .tip-item li, .strategy-item li {
+        margin-bottom: 10px;
+    }
 </style>
 </head>
 <body>
@@ -299,6 +361,17 @@
                     <p><strong>Difficulty:</strong> Moderate</p>
                 </div>
             </div>
+            <nav class="quick-nav">
+                <ul>
+                    <li><a href="#abilities">Abilities</a></li>
+                    <li><a href="#builds">Builds</a></li>
+                    <li><a href="#runes">Runes</a></li>
+                    <li><a href="#matchups">Matchups</a></li>
+                    <li><a href="#combos">Combos</a></li>
+                    <li><a href="#tips">Champion Tips</a></li>
+                    <li><a href="#strategy">In-Game Strategy</a></li>
+                </ul>
+            </nav>
 
             <h2 class="section-title">Abilities</h2>
             <div class="abilities">
@@ -480,6 +553,62 @@
                     <p>R > E > Q1 > W > Q2 > E > Q3</p>
                 </div>
             </div>
+
+            <h2 id="tips" class="section-title">Champion Tips</h2>
+            <div class="tips">
+                <div class="tip-item">
+                    <h3>Laning Phase</h3>
+                    <ul>
+                        <li>Use your Q to poke enemies from a safe distance.</li>
+                        <li>Save your E for escaping ganks or engaging when your jungler comes to gank.</li>
+                        <li>Try to hit the sweet spot of your Q for maximum damage and crowd control.</li>
+                    </ul>
+                </div>
+                <div class="tip-item">
+                    <h3>Teamfights</h3>
+                    <ul>
+                        <li>Activate your ultimate before engaging to maximize your effectiveness.</li>
+                        <li>Try to hit multiple enemies with your Q's sweet spots for AoE damage and crowd control.</li>
+                        <li>Use your W to chain crowd control or peel for your carries.</li>
+                    </ul>
+                </div>
+                <div class="tip-item">
+                    <h3>General Tips</h3>
+                    <ul>
+                        <li>Practice your Q combos to maximize your damage output.</li>
+                        <li>Remember that your E can be used during your Q animation for repositioning.</li>
+                        <li>Your passive gives you sustain in lane, so try to proc it on enemy champions when possible.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="strategy" class="section-title">In-Game Strategy</h2>
+            <div class="strategy">
+                <div class="strategy-item">
+                    <h3>Early Game (0-10 minutes)</h3>
+                    <ul>
+                        <li>Focus on farming and poking your opponent with Q.</li>
+                        <li>Buy Doran's Blade or Corrupting Potion as your starting item.</li>
+                        <li>At first back, aim for a Caulfield's Warhammer or Phage, depending on your build path.</li>
+                    </ul>
+                </div>
+                <div class="strategy-item">
+                    <h3>Mid Game (10-20 minutes)</h3>
+                    <ul>
+                        <li>Complete your first core item (Goredrinker or Eclipse).</li>
+                        <li>Start roaming to help your team in skirmishes and objectives.</li>
+                        <li>Focus on taking down the enemy carries in teamfights.</li>
+                    </ul>
+                </div>
+                <div class="strategy-item">
+                    <h3>Late Game (20+ minutes)</h3>
+                    <ul>
+                        <li>Complete your build with items like Black Cleaver, Sterak's Gage, and Guardian Angel.</li>
+                        <li>Split push when your ultimate is down, group with your team when it's up.</li>
+                        <li>Look for flank opportunities to engage on the enemy backline.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="wr-content">
             <div class="champion-info">
@@ -494,6 +623,17 @@
                     <p><strong>Lane:</strong> Baron Lane</p>
                 </div>
             </div>
+            <nav class="quick-nav">
+                <ul>
+                    <li><a href="#abilities">Abilities</a></li>
+                    <li><a href="#builds">Builds</a></li>
+                    <li><a href="#runes">Runes</a></li>
+                    <li><a href="#matchups">Matchups</a></li>
+                    <li><a href="#combos">Combos</a></li>
+                    <li><a href="#tips">Champion Tips</a></li>
+                    <li><a href="#strategy">In-Game Strategy</a></li>
+                </ul>
+            </nav>
             <!-- Add Wild Rift specific abilities, builds, runes, etc. -->
         </div>
     </div>
