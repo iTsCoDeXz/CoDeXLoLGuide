@@ -1,0 +1,296 @@
+<html><head><base href="index.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League of Legends Lore</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0a0a0c;
+        color: #ffffff;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #091428;
+    }
+    h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #c8aa6e;
+    }
+    .logo {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #c8aa6e;
+    }
+    .main-menu {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .main-menu ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+    .main-menu a {
+        color: #c8aa6e;
+        text-decoration: none;
+        font-size: 1.1em;
+        transition: color 0.3s ease;
+    }
+    .main-menu a:hover {
+        color: #ffffff;
+    }
+    .language-selector {
+        margin-left: 20px;
+    }
+    #language-select {
+        background-color: #1e2328;
+        color: #c8aa6e;
+        border: 1px solid #c8aa6e;
+        padding: 5px;
+        font-size: 1em;
+    }
+    .champion-selector {
+        text-align: center;
+        margin: 20px 0;
+    }
+    #champion-select {
+        background-color: #1e2328;
+        color: #c8aa6e;
+        border: 1px solid #c8aa6e;
+        padding: 10px;
+        font-size: 1.1em;
+    }
+    .lore-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #1e2328;
+        border-radius: 10px;
+    }
+    #champion-name {
+        color: #c8aa6e;
+        border-bottom: 2px solid #c8aa6e;
+        padding-bottom: 10px;
+    }
+    #champion-lore {
+        margin-top: 20px;
+        line-height: 1.6;
+    }
+    #champion-video {
+        margin-top: 30px;
+        text-align: center;
+    }
+    #champion-video iframe {
+        max-width: 100%;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://raw.githubusercontent.com/Avidip/LOL-Champ-Select/main/assets/logo_lol_icon.png" alt="League of Legends Logo" class="logo">
+            <h1 id="main-title">League of Legends Lore</h1>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html" id="nav-champions">Champions</a></li>
+                <li><a href="items.html" id="nav-items">Items</a></li>
+                <li><a href="lore.html" id="nav-lore">Lore</a></li>
+                <li><a href="#top-tier" id="nav-top-tier">Top Tier</a></li>
+                <li><a href="#buffs-nerfs" id="nav-buffs-nerfs">Buffs & Nerfs</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="it">Italiano</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="champion-selector">
+        <label for="champion-select">Select a champion:</label>
+        <select id="champion-select"></select>
+    </div>
+
+    <div class="lore-content">
+        <h2 id="champion-name"></h2>
+        <div id="champion-lore"></div>
+        <div id="champion-video"></div>
+    </div>
+
+    <script>
+        const champions = {
+            "Ahri": {
+                en: {
+                    name: "Ahri",
+                    lore: "Ahri is a vastaya who can reshape magic into orbs of raw energy. She revels in toying with her prey by manipulating their emotions before devouring their life essence...",
+                    video: "https://www.youtube.com/embed/0z7kfuJwGvs"
+                },
+                es: {
+                    name: "Ahri",
+                    lore: "Ahri es una vastaya que puede transformar la magia en orbes de energía pura. Disfruta jugando con su presa manipulando sus emociones antes de devorar su esencia vital...",
+                    video: "https://www.youtube.com/embed/0z7kfuJwGvs"
+                },
+                it: {
+                    name: "Ahri",
+                    lore: "Ahri è una vastaya in grado di modellare la magia in sfere di energia pura. Si diverte a giocare con la sua preda manipolandone le emozioni prima di divorarne l'essenza vitale...",
+                    video: "https://www.youtube.com/embed/0z7kfuJwGvs"
+                }
+            },
+            "Akali": {
+                en: {
+                    name: "Akali",
+                    lore: "Abandoning the Kinkou Order and her title of the Fist of Shadow, Akali now strikes alone, ready to be the deadly weapon her people need...",
+                    video: "https://www.youtube.com/embed/4kGSa1sA1R4"
+                },
+                es: {
+                    name: "Akali",
+                    lore: "Tras abandonar la Orden Kinkou y su título del Puño de la Sombra, Akali ahora ataca en solitario, lista para ser el arma letal que su gente necesita...",
+                    video: "https://www.youtube.com/embed/4kGSa1sA1R4"
+                },
+                it: {
+                    name: "Akali",
+                    lore: "Abbandonato l'Ordine Kinkou e il suo titolo di Pugno dell'Ombra, Akali ora colpisce da sola, pronta a essere l'arma letale di cui il suo popolo ha bisogno...",
+                    video: "https://www.youtube.com/embed/4kGSa1sA1R4"
+                }
+            },
+            "Ashe": {
+                en: {
+                    name: "Ashe",
+                    lore: "Iceborn warmother of the Avarosan tribe, Ashe commands the most populous horde in the north. Stoic, intelligent, and idealistic, yet uncomfortable with her role as leader...",
+                    video: "https://www.youtube.com/embed/mSbMQ5xDnEg"
+                },
+                es: {
+                    name: "Ashe",
+                    lore: "Ashe, la hija del hielo y madre de guerra de la tribu de Avarosa, lidera la horda más numerosa del norte. Estoica, inteligente e idealista, aunque incómoda con su papel de líder...",
+                    video: "https://www.youtube.com/embed/mSbMQ5xDnEg"
+                },
+                it: {
+                    name: "Ashe",
+                    lore: "Ashe, la figlia del ghiaccio e madre di guerra della tribù Avarosan, comanda l'orda più popolosa del nord. Stoica, intelligente e idealista, ma a disagio nel suo ruolo di leader...",
+                    video: "https://www.youtube.com/embed/mSbMQ5xDnEg"
+                }
+            },
+            "Garen": {
+                en: {
+                    name: "Garen",
+                    lore: "A proud and noble warrior, Garen fights at the head of the Dauntless Vanguard. He is popular among his fellows, and respected well enough by his enemies...",
+                    video: "https://www.youtube.com/embed/Q7oyW6LjxrA"
+                },
+                es: {
+                    name: "Garen",
+                    lore: "Un guerrero orgulloso y noble, Garen lucha al frente de la Vanguardia Intrépida. Es popular entre sus compañeros y respetado por sus enemigos...",
+                    video: "https://www.youtube.com/embed/Q7oyW6LjxrA"
+                },
+                it: {
+                    name: "Garen",
+                    lore: "Garen, un guerriero orgoglioso e nobile, combatte alla testa dell'Avanguardia Impavida. È popolare tra i suoi compagni e abbastanza rispettato dai suoi nemici...",
+                    video: "https://www.youtube.com/embed/Q7oyW6LjxrA"
+                }
+            },
+            "Lux": {
+                en: {
+                    name: "Lux",
+                    lore: "Luxanna Crownguard hails from Demacia, an insular realm where magical abilities are viewed with fear and suspicion. Able to bend light to her will, she grew up dreading discovery...",
+                    video: "https://www.youtube.com/embed/oKt58b7AwJc"
+                },
+                es: {
+                    name: "Lux",
+                    lore: "Luxanna Crownguard proviene de Demacia, un reino insular donde las habilidades mágicas son vistas con miedo y sospecha. Capaz de doblar la luz a su voluntad, creció temiendo ser descubierta...",
+                    video: "https://www.youtube.com/embed/oKt58b7AwJc"
+                },
+                it: {
+                    name: "Lux",
+                    lore: "Luxanna Crownguard proviene da Demacia, un regno insulare dove le abilità magiche sono viste con paura e sospetto. In grado di piegare la luce alla sua volontà, è cresciuta temendo di essere scoperta...",
+                    video: "https://www.youtube.com/embed/oKt58b7AwJc"
+                }
+            },
+            "Yasuo": {
+                en: {
+                    name: "Yasuo",
+                    lore: "An Ionian of deep resolve, Yasuo is an agile swordsman who wields the air itself against his enemies. As a proud young man, he was falsely accused of murdering his master...",
+                    video: "https://www.youtube.com/embed/qCZxl3LUgt0"
+                },
+                es: {
+                    name: "Yasuo",
+                    lore: "Un jonio de profunda determinación, Yasuo es un ágil espadachín que emplea el aire mismo contra sus enemigos. Cuando era un joven orgulloso, fue acusado falsamente de asesinar a su maestro...",
+                    video: "https://www.youtube.com/embed/qCZxl3LUgt0"
+                },
+                it: {
+                    name: "Yasuo",
+                    lore: "Uno ioniano dalla profonda determinazione, Yasuo è un agile spadaccino che usa l'aria stessa contro i suoi nemici. Da giovane orgoglioso, fu falsamente accusato di aver ucciso il suo maestro...",
+                    video: "https://www.youtube.com/embed/qCZxl3LUgt0"
+                }
+            }
+            // Add more champions here as needed
+        };
+
+        function updateChampionLore(champion, lang) {
+            const champData = champions[champion][lang];
+            document.getElementById('champion-name').textContent = champData.name;
+            document.getElementById('champion-lore').textContent = champData.lore;
+            document.getElementById('champion-video').innerHTML = `<iframe width="560" height="315" src="${champData.video}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const championSelect = document.getElementById('champion-select');
+            const languageSelect = document.getElementById('language-select');
+
+            Object.keys(champions).forEach(champion => {
+                const option = document.createElement('option');
+                option.value = champion;
+                option.textContent = champion;
+                championSelect.appendChild(option);
+            });
+
+            championSelect.addEventListener('change', (e) => {
+                updateChampionLore(e.target.value, languageSelect.value);
+            });
+
+            languageSelect.addEventListener('change', (e) => {
+                updateChampionLore(championSelect.value, e.target.value);
+            });
+
+            updateChampionLore(Object.keys(champions)[0], 'en');
+        });
+
+        const translations = {
+            en: {
+                mainTitle: "League of Legends Lore",
+                selectChampion: "Select a champion"
+            },
+            es: {
+                mainTitle: "Historia del Campeón",
+                selectChampion: "Selecciona un campeón"
+            },
+            it: {
+                mainTitle: "Storia del Campione",
+                selectChampion: "Seleziona un campione"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('main-title').textContent = translations[lang].mainTitle;
+            document.getElementById('champion-select').previousElementSibling.textContent = translations[lang].selectChampion;
+            updateChampionLore(document.getElementById('champion-select').value, lang);
+        }
+
+        document.getElementById('language-select').addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+    </script>
+</body>
+</html>

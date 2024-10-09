@@ -1,0 +1,408 @@
+<html><head><base href="buffs-nerfs.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League of Legends Buffs & Nerfs</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0a0a0c;
+        color: #ffffff;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #091428;
+    }
+    h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #c8aa6e;
+    }
+    .logo {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #c8aa6e;
+    }
+    .main-menu {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .main-menu ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+    .main-menu a {
+        color: #c8aa6e;
+        text-decoration: none;
+        font-size: 1.1em;
+        transition: color 0.3s ease;
+    }
+    .main-menu a:hover {
+        color: #ffffff;
+    }
+    .language-selector {
+        margin-left: 20px;
+    }
+    #language-select {
+        background-color: #1e2328;
+        color: #c8aa6e;
+        border: 1px solid #c8aa6e;
+        padding: 5px;
+        font-size: 1em;
+    }
+    .patch-notes {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .patch {
+        background-color: #1e2328;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    .patch-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #c8aa6e;
+        padding-bottom: 10px;
+    }
+    .patch-version {
+        font-size: 1.8em;
+        color: #c8aa6e;
+    }
+    .patch-date {
+        color: #a09b8c;
+    }
+    .champion-changes {
+        margin-top: 20px;
+    }
+    .champion {
+        margin-bottom: 15px;
+    }
+    .champion-name {
+        font-size: 1.2em;
+        color: #c8aa6e;
+        margin-bottom: 5px;
+    }
+    .buff, .nerf {
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-size: 0.9em;
+        margin-right: 5px;
+    }
+    .buff {
+        background-color: #4caf50;
+        color: #ffffff;
+    }
+    .nerf {
+        background-color: #f44336;
+        color: #ffffff;
+    }
+    .change-description {
+        margin-left: 10px;
+    }
+    .game-updates {
+        margin-top: 20px;
+    }
+    .update-item {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://raw.githubusercontent.com/Avidip/LOL-Champ-Select/main/assets/logo_lol_icon.png" alt="League of Legends Logo" class="logo">
+            <h1 id="main-title">League of Legends Buffs & Nerfs</h1>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html" id="nav-champions">Champions</a></li>
+                <li><a href="items.html" id="nav-items">Items</a></li>
+                <li><a href="lore.html" id="nav-lore">Lore</a></li>
+                <li><a href="top-tier.html" id="nav-top-tier">Top Tier</a></li>
+                <li><a href="buffs-nerfs.html" id="nav-buffs-nerfs">Buffs & Nerfs</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="it">Italiano</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="patch-notes" id="patch-notes">
+        <!-- Patch notes will be dynamically inserted here -->
+    </div>
+
+    <script>
+        const patchData = [
+            {
+                version: "13.11",
+                date: "2023-05-31",
+                champions: [
+                    {
+                        name: "Aatrox",
+                        changes: [
+                            { type: "buff", description: "Q - The Darkin Blade damage increased from 60-180 to 65-185" },
+                            { type: "nerf", description: "Base health regeneration reduced from 3 to 2.5 per 5 seconds" }
+                        ]
+                    },
+                    {
+                        name: "Zeri",
+                        changes: [
+                            { type: "nerf", description: "Base attack damage reduced from 53 to 50" },
+                            { type: "buff", description: "E - Spark Surge cooldown reduced from 23-19 to 22-18 seconds" }
+                        ]
+                    },
+                    {
+                        name: "Thresh",
+                        changes: [
+                            { type: "buff", description: "W - Dark Passage shield strength increased from 60-220 to 70-230" }
+                        ]
+                    }
+                ],
+                updates: [
+                    "Introduced new Pulsefire skins",
+                    "Added practice tool improvements",
+                    "Implemented changes to jungle camp respawn timers"
+                ]
+            },
+            {
+                version: "13.10",
+                date: "2023-05-17",
+                champions: [
+                    {
+                        name: "Ahri",
+                        changes: [
+                            { type: "buff", description: "Base armor increased from 18 to 21" }
+                        ]
+                    },
+                    {
+                        name: "Jinx",
+                        changes: [
+                            { type: "nerf", description: "Base attack damage reduced from 59 to 57" },
+                            { type: "buff", description: "Q - Switcheroo! mana cost reduced from 20 to 15" }
+                        ]
+                    }
+                ],
+                updates: [
+                    "New skin line: Battle Academia 2023",
+                    "Improved matchmaking algorithm for ranked games",
+                    "Bug fixes for various champion abilities"
+                ]
+            },
+            {
+                version: "13.9",
+                date: "2023-05-03",
+                champions: [
+                    {
+                        name: "Yasuo",
+                        changes: [
+                            { type: "nerf", description: "Base movement speed reduced from 345 to 340" }
+                        ]
+                    },
+                    {
+                        name: "Lux",
+                        changes: [
+                            { type: "buff", description: "R - Final Spark cooldown reduced from 80/60/40 to 70/55/40 seconds" }
+                        ]
+                    }
+                ],
+                updates: [
+                    "Introduced new ward skins",
+                    "Updated in-game HUD for better clarity",
+                    "Performance improvements for low-end devices"
+                ]
+            },
+            {
+                version: "13.8",
+                date: "2023-04-19",
+                champions: [
+                    {
+                        name: "Senna",
+                        changes: [
+                            { type: "buff", description: "Q - Piercing Darkness heal increased from 40-160 to 50-170" },
+                            { type: "nerf", description: "Passive - Absolution mist wraith spawn rate decreased by 5%" }
+                        ]
+                    },
+                    {
+                        name: "Renekton",
+                        changes: [
+                            { type: "buff", description: "W - Ruthless Predator stun duration increased from 0.75s to 1s" }
+                        ]
+                    },
+                    {
+                        name: "Sylas",
+                        changes: [
+                            { type: "nerf", description: "E - Abscond / Abduct cooldown increased from 14-10s to 16-12s" }
+                        ]
+                    }
+                ],
+                updates: [
+                    "Reworked ARAM map with new visual effects",
+                    "Implemented changes to surrender system",
+                    "Added new emotes and icons"
+                ]
+            },
+            {
+                version: "13.7",
+                date: "2023-04-05",
+                champions: [
+                    {
+                        name: "Nasus",
+                        changes: [
+                            { type: "buff", description: "Q - Siphoning Strike stack damage increased from 3 to 4 per stack" }
+                        ]
+                    },
+                    {
+                        name: "Orianna",
+                        changes: [
+                            { type: "nerf", description: "Base mana reduced from 418 to 400" },
+                            { type: "buff", description: "W - Command: Dissonance slow increased from 20% to 25%" }
+                        ]
+                    },
+                    {
+                        name: "Sett",
+                        changes: [
+                            { type: "nerf", description: "Passive - Pit Grit regeneration reduced from 0.25-8.05 to 0.25-7.5 per second" }
+                        ]
+                    }
+                ],
+                updates: [
+                    "Introduced Mythic Essence system changes",
+                    "Updated client performance for smoother experience",
+                    "Added new loading screen tips"
+                ]
+            }
+        ];
+
+        const translations = {
+            en: {
+                mainTitle: "League of Legends Buffs & Nerfs",
+                patchVersion: "Patch",
+                buff: "Buff",
+                nerf: "Nerf",
+                gameUpdates: "Game Updates"
+            },
+            es: {
+                mainTitle: "Liga de Leyendas Mejoras y Debilitaciones",
+                patchVersion: "Parche",
+                buff: "Mejora",
+                nerf: "Debilitación",
+                gameUpdates: "Actualizaciones del Juego"
+            },
+            it: {
+                mainTitle: "League of Legends Potenziamenti e Indebolimenti",
+                patchVersion: "Patch",
+                buff: "Potenziamento",
+                nerf: "Indebolimento",
+                gameUpdates: "Aggiornamenti del Gioco"
+            }
+        };
+
+        function updatePatchNotes(lang) {
+            const patchNotesElement = document.getElementById('patch-notes');
+            patchNotesElement.innerHTML = '';
+
+            patchData.forEach(patch => {
+                const patchElement = document.createElement('div');
+                patchElement.className = 'patch';
+
+                const patchHeader = document.createElement('div');
+                patchHeader.className = 'patch-header';
+
+                const patchVersion = document.createElement('span');
+                patchVersion.className = 'patch-version';
+                patchVersion.textContent = `${translations[lang].patchVersion} ${patch.version}`;
+
+                const patchDate = document.createElement('span');
+                patchDate.className = 'patch-date';
+                patchDate.textContent = patch.date;
+
+                patchHeader.appendChild(patchVersion);
+                patchHeader.appendChild(patchDate);
+                patchElement.appendChild(patchHeader);
+
+                const championChanges = document.createElement('div');
+                championChanges.className = 'champion-changes';
+
+                patch.champions.forEach(champion => {
+                    const championElement = document.createElement('div');
+                    championElement.className = 'champion';
+
+                    const championName = document.createElement('div');
+                    championName.className = 'champion-name';
+                    championName.textContent = champion.name;
+                    championElement.appendChild(championName);
+
+                    champion.changes.forEach(change => {
+                        const changeElement = document.createElement('div');
+                        const changeType = document.createElement('span');
+                        changeType.className = change.type;
+                        changeType.textContent = translations[lang][change.type];
+                        
+                        const changeDescription = document.createElement('span');
+                        changeDescription.className = 'change-description';
+                        changeDescription.textContent = change.description;
+
+                        changeElement.appendChild(changeType);
+                        changeElement.appendChild(changeDescription);
+                        championElement.appendChild(changeElement);
+                    });
+
+                    championChanges.appendChild(championElement);
+                });
+
+                patchElement.appendChild(championChanges);
+
+                const gameUpdates = document.createElement('div');
+                gameUpdates.className = 'game-updates';
+                const gameUpdatesTitle = document.createElement('h3');
+                gameUpdatesTitle.textContent = translations[lang].gameUpdates;
+                gameUpdates.appendChild(gameUpdatesTitle);
+
+                patch.updates.forEach(update => {
+                    const updateItem = document.createElement('div');
+                    updateItem.className = 'update-item';
+                    updateItem.textContent = update;
+                    gameUpdates.appendChild(updateItem);
+                });
+
+                patchElement.appendChild(gameUpdates);
+                patchNotesElement.appendChild(patchElement);
+            });
+        }
+
+        function changeLanguage(lang) {
+            document.getElementById('main-title').textContent = translations[lang].mainTitle;
+            updatePatchNotes(lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageSelect = document.getElementById('language-select');
+
+            languageSelect.addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+            });
+
+            changeLanguage('en');
+        });
+    </script>
+</body>
+</html>

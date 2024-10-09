@@ -1,0 +1,385 @@
+<html><head><base href="index.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Play League of Legends</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0a0a0c;
+        color: #ffffff;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #091428;
+        position: relative;
+    }
+    .logo {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #c8aa6e;
+    }
+    h1, h2, h3 {
+        color: #c8aa6e;
+    }
+    .language-selector {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    #language-select {
+        padding: 5px;
+        background-color: #091428;
+        color: #c8aa6e;
+        border: 1px solid #c8aa6e;
+        border-radius: 5px;
+    }
+    .main-menu {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .main-menu ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+    .main-menu a {
+        color: #c8aa6e;
+        text-decoration: none;
+        font-size: 1.1em;
+        transition: color 0.3s ease;
+    }
+    .main-menu a:hover {
+        color: #ffffff;
+    }
+    .content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .section {
+        margin-bottom: 40px;
+    }
+    img, video {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    #interactive-map {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 40px auto;
+    }
+    #map-image {
+        width: 100%;
+        height: auto;
+    }
+    .map-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .role-area {
+        position: absolute;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+    .role-area:hover {
+        opacity: 0.8;
+    }
+    #role-info {
+        background-color: rgba(9, 20, 40, 0.9);
+        border: 2px solid #c8aa6e;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .info-box {
+        background-color: rgba(9, 20, 40, 0.9);
+        border: 2px solid #c8aa6e;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .image-gallery img {
+        width: calc(33.33% - 20px);
+        object-fit: cover;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://raw.githubusercontent.com/Avidip/LOL-Champ-Select/main/assets/logo_lol_icon.png" alt="League of Legends Logo" class="logo">
+            <h1 data-translate="title">How to Play League of Legends</h1>
+        </div>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="it">Italiano</option>
+            </select>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html">Champions</a></li>
+                <li><a href="#items">Items</a></li>
+                <li><a href="#lore">Lore</a></li>
+                <li><a href="#top-tier">Top Tier</a></li>
+                <li><a href="#buffs-nerfs">Buffs & Nerfs</a></li>
+                <li><a href="how-to-play.html">How to Play</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="section">
+            <h2 data-translate="gettingStarted">Getting Started with League of Legends</h2>
+            <p data-translate="introText">League of Legends is a fast-paced, competitive online game that blends the speed and intensity of an RTS with RPG elements. Two teams of powerful champions, each with a unique design and playstyle, battle head-to-head across multiple battlefields and game modes.</p>
+            
+            <div class="info-box">
+                <h3>Key Information:</h3>
+                <ul>
+                    <li>Free-to-play MOBA (Multiplayer Online Battle Arena) game</li>
+                    <li>5v5 team-based strategy game</li>
+                    <li>Over 150 champions to choose from</li>
+                    <li>Regular updates and new content</li>
+                    <li>Competitive ranked system</li>
+                    <li>Vibrant esports scene</li>
+                </ul>
+            </div>
+
+            <h3>Basic Gameplay</h3>
+            <p>In the main game mode, two teams of five players compete to destroy the enemy's Nexus, which is guarded by the enemy team and a number of defensive structures. Each player controls a single champion with unique abilities and different playstyles.</p>
+
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/BGtROJeMPeE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <h3>Game Phases</h3>
+            <ol>
+                <li><strong>Champion Select:</strong> Players choose their champions and set up runes.</li>
+                <li><strong>Early Game (Laning Phase):</strong> Players farm minions and try to gain an advantage over their opponents.</li>
+                <li><strong>Mid Game:</strong> Teams start grouping for objectives and team fights.</li>
+                <li><strong>Late Game:</strong> Full team fights and pushing for the win.</li>
+            </ol>
+
+            <div class="image-gallery">
+                <img src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt9a3acb741db13da0/636990f306fa670f188e5326/champion-pool.jpg" alt="Champion selection screen" width="300" height="200">
+                <img src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt7a0a7b3bc4a55a17/636991a6ed22f14e2bda5101/laning-phase.jpg" alt="Laning phase gameplay" width="300" height="200">
+                <img src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt6b6adf85db271e3a/636991bc600fb90d0b0d8f11/teamfight.jpg" alt="Team fight in mid game" width="300" height="200">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Core Mechanics</h2>
+            <ul>
+                <li><strong>Last Hitting:</strong> Killing minions and monsters for gold and experience.</li>
+                <li><strong>Ability Usage:</strong> Each champion has unique abilities that define their playstyle.</li>
+                <li><strong>Warding:</strong> Placing wards to gain vision of the map and track enemy movements.</li>
+                <li><strong>Objective Control:</strong> Securing important objectives like Dragon, Baron, and towers.</li>
+                <li><strong>Team Fighting:</strong> Coordinating with your team to win group battles.</li>
+            </ul>
+
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/0uyLRPmmYPk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Interactive Summoner's Rift Map</h2>
+            <p>Explore the different roles on Summoner's Rift by clicking on the map areas below:</p>
+            <div id="interactive-map">
+                <img id="map-image" src="https://ddragon.leagueoflegends.com/cdn/6.8.1/img/map/map11.png" alt="Summoner's Rift Map">
+                <div class="map-overlay">
+                    <svg width="100%" height="100%" viewBox="0 0 512 512">
+                        <polygon class="role-area" points="0,0 170,0 170,170 0,170" fill="#ff0000" data-role="top"></polygon>
+                        <polygon class="role-area" points="342,0 512,0 512,170 342,170" fill="#00ff00" data-role="mid"></polygon>
+                        <polygon class="role-area" points="342,342 512,342 512,512 342,512" fill="#0000ff" data-role="bot"></polygon>
+                        <polygon class="role-area" points="170,170 342,170 342,342 170,342" fill="#ffff00" data-role="jungle"></polygon>
+                        <polygon class="role-area" points="0,342 170,342 170,512 0,512" fill="#ff00ff" data-role="support"></polygon>
+                    </svg>
+                </div>
+            </div>
+            <div id="role-info">
+                <h3>Click on a role to learn more</h3>
+                <p>Each role in League of Legends has unique responsibilities and playstyles. Explore the map to understand how to play each role effectively.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Tips for New Players</h2>
+            <ol>
+                <li>Start with the tutorial and practice against bots.</li>
+                <li>Try out different champions in the free rotation.</li>
+                <li>Learn to last hit minions consistently.</li>
+                <li>Communicate with your team using pings and chat.</li>
+                <li>Watch educational content and professional matches to improve.</li>
+                <li>Don't get discouraged - LoL has a steep learning curve!</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Advanced Concepts</h2>
+            <p>As you get more comfortable with the basics, you can start learning more advanced concepts:</p>
+            <ul>
+                <li>Wave management</li>
+                <li>Macro strategy</li>
+                <li>Counter-picking</li>
+                <li>Item builds and adaptations</li>
+                <li>Advanced warding techniques</li>
+            </ul>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/iko2tqmDpJQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "How to Play League of Legends",
+                gettingStarted: "Getting Started with League of Legends",
+                introText: "League of Legends is a fast-paced, competitive online game that blends the speed and intensity of an RTS with RPG elements. Two teams of powerful champions, each with a unique design and playstyle, battle head-to-head across multiple battlefields and game modes."
+                // Add more translations for English
+            },
+            es: {
+                title: "Cómo jugar League of Legends",
+                gettingStarted: "Comenzando con League of Legends",
+                introText: "League of Legends es un juego en línea competitivo y rápido que combina la velocidad e intensidad de un RTS con elementos de RPG. Dos equipos de poderosos campeones, cada uno con un diseño y estilo de juego único, se enfrentan en múltiples campos de batalla y modos de juego."
+                // Add more translations for Spanish
+            },
+            it: {
+                title: "Come giocare a League of Legends",
+                gettingStarted: "Iniziare con League of Legends",
+                introText: "League of Legends è un gioco online competitivo e veloce che combina la rapidità e l'intensità di un RTS con elementi RPG. Due squadre di potenti campioni, ognuno con un design e uno stile di gioco unico, si scontrano in molteplici campi di battaglia e modalità di gioco."
+                // Add more translations for Italian
+            }
+        };
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        document.getElementById('language-select').addEventListener('change', (event) => {
+            updateLanguage(event.target.value);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLanguage('en');
+        });
+
+        const roleInfo = {
+            top: {
+                title: "Top Lane",
+                description: "Top laners are typically tanky or damage-dealing champions who can hold their own in a 1v1 situation. They focus on farming minions, trading with their opponent, and creating pressure on the top side of the map. Top laners often engage in split-pushing strategies later in the game.",
+                tips: [
+                    "Practice last-hitting minions to maximize gold income",
+                    "Learn wave management to control the lane",
+                    "Keep an eye on the minimap for potential ganks",
+                    "Use Teleport summoner spell to join important team fights"
+                ]
+            },
+            jungle: {
+                title: "Jungle",
+                description: "Junglers roam the map, clearing neutral monster camps and ganking lanes to help their teammates. They play a crucial role in securing objectives like Dragon and Baron Nashor. Junglers need to balance farming, ganking, and objective control to be effective.",
+                tips: [
+                    "Optimize your jungle clear path for efficiency",
+                    "Communicate with your team about gank timings",
+                    "Control vision around important objectives",
+                    "Counter-jungle when it's safe to do so"
+                ]
+            },
+            mid: {
+                title: "Mid Lane",
+                description: "Mid laners are often mages or assassins with high damage output. They have the shortest lane, allowing them to roam and impact other parts of the map. Mid laners focus on farming, trading with their opponent, and helping their jungler secure objectives.",
+                tips: [
+                    "Practice CSing (last-hitting minions) under tower",
+                    "Look for roaming opportunities to help other lanes",
+                    "Ward both sides of the lane to avoid ganks",
+                    "Coordinate with your jungler for objective control"
+                ]
+            },
+            bot: {
+                title: "Bot Lane (ADC)",
+                description: "The Attack Damage Carry (ADC) is responsible for dealing consistent damage in team fights. ADCs are typically ranged champions who scale well with items. They farm in the bot lane alongside their support, focusing on last-hitting minions and staying safe in the early game.",
+                tips: [
+                    "Focus on farming and scaling into the late game",
+                    "Position safely in team fights to deal maximum damage",
+                    "Coordinate with your support for lane pressure and kills",
+                    "Practice kiting and orb-walking to improve mechanics"
+                ]
+            },
+            support: {
+                title: "Support",
+                description: "Supports play alongside the ADC in the bot lane, helping to protect them and set up kills. They don't focus on farming minions, instead gaining gold through support items. Supports are responsible for vision control, crowd control, and sometimes initiating team fights.",
+                tips: [
+                    "Ward key areas of the map to provide vision for your team",
+                    "Protect your ADC in lane and during team fights",
+                    "Roam to mid or help your jungler when appropriate",
+                    "Learn when to engage and when to peel for your carries"
+                ]
+            }
+        };
+
+        const roleAreas = document.querySelectorAll('.role-area');
+        const roleInfoDiv = document.getElementById('role-info');
+
+        roleAreas.forEach(area => {
+            area.addEventListener('click', () => {
+                const role = area.getAttribute('data-role');
+                if (roleInfo[role]) {
+                    roleInfoDiv.innerHTML = `
+                        <h3>${roleInfo[role].title}</h3>
+                        <p>${roleInfo[role].description}</p>
+                        <h4>Tips:</h4>
+                        <ul>
+                            ${roleInfo[role].tips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                    `;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

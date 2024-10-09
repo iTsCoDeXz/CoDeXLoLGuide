@@ -1,0 +1,542 @@
+<html><head><base href="index.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League of Legends Items</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0a0a0c;
+        color: #ffffff;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #091428;
+    }
+    h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #c8aa6e;
+    }
+    .logo {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #c8aa6e;
+    }
+    .main-menu {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .main-menu ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+    .main-menu a {
+        color: #c8aa6e;
+        text-decoration: none;
+        font-size: 1.1em;
+        transition: color 0.3s ease;
+    }
+    .main-menu a:hover {
+        color: #ffffff;
+    }
+    .language-selector {
+        margin-left: 20px;
+    }
+    #language-select {
+        background-color: #1e2328;
+        color: #c8aa6e;
+        border: 1px solid #c8aa6e;
+        padding: 5px;
+        font-size: 1em;
+    }
+    .category-switch {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .category-btn {
+        background-color: #1e2328;
+        color: #c8aa6e;
+        border: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease;
+    }
+    .category-btn:hover, .category-btn.active {
+        background-color: #c8aa6e;
+        color: #1e2328;
+    }
+    .item-section {
+        margin: 40px 20px;
+    }
+    .item-section h2 {
+        color: #c8aa6e;
+        border-bottom: 2px solid #c8aa6e;
+        padding-bottom: 10px;
+    }
+    .item-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px 0;
+    }
+    .item-card {
+        background-color: #1e2328;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        position: relative;
+    }
+    .item-card:hover {
+        transform: scale(1.05);
+        z-index: 100;
+    }
+    .item-image {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 10px;
+    }
+    .item-name {
+        font-size: 1.1em;
+        margin-bottom: 5px;
+        color: #c8aa6e;
+    }
+    .item-tooltip {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 250px;
+        z-index: 1000;
+        background-color: #1e2328;
+        border: 1px solid #c8aa6e;
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+    }
+    .item-card:hover .item-tooltip {
+        display: block;
+    }
+    .item-cost {
+        color: #ffd700;
+        font-weight: bold;
+    }
+    .item-info, .item-champions {
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://raw.githubusercontent.com/Avidip/LOL-Champ-Select/main/assets/logo_lol_icon.png" alt="League of Legends Logo" class="logo">
+            <h1 id="main-title">League of Legends Items</h1>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html" id="nav-champions">Champions</a></li>
+                <li><a href="items.html" id="nav-items">Items</a></li>
+                <li><a href="#lore" id="nav-lore">Lore</a></li>
+                <li><a href="#top-tier" id="nav-top-tier">Top Tier</a></li>
+                <li><a href="#buffs-nerfs" id="nav-buffs-nerfs">Buffs & Nerfs</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="it">Italiano</option>
+            </select>
+        </div>
+    </header>
+    <div class="category-switch">
+        <button class="category-btn active" data-category="tank">Tank Items</button>
+        <button class="category-btn" data-category="magic">Magic Items</button>
+        <button class="category-btn" data-category="physical">Physical Items</button>
+    </div>
+
+    <div id="tank-items" class="item-section">
+        <h2 id="tank-items-title">Tank Items</h2>
+        <div class="item-grid"></div>
+    </div>
+
+    <div id="magic-items" class="item-section" style="display: none;">
+        <h2 id="magic-items-title">Magic Items</h2>
+        <div class="item-grid"></div>
+    </div>
+
+    <div id="physical-items" class="item-section" style="display: none;">
+        <h2 id="physical-items-title">Physical Items</h2>
+        <div class="item-grid"></div>
+    </div>
+
+    <script>
+        const items = {
+            tank: [
+                {
+                    name: "Warmog's Armor",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3083.png",
+                    cost: 3000,
+                    info: "Grants a massive amount of health regeneration when out of combat.",
+                    champions: "Cho'Gath, Dr. Mundo, Sion",
+                    reason: "Provides excellent sustain for high health champions."
+                },
+                {
+                    name: "Sunfire Aegis",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3068.png",
+                    cost: 3200,
+                    info: "Deals magic damage to nearby enemies and grants bonus armor and magic resist.",
+                    champions: "Amumu, Rammus, Zac",
+                    reason: "Great for champions who like to be in the middle of teamfights."
+                },
+                {
+                    name: "Thornmail",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3075.png",
+                    cost: 2700,
+                    info: "Reflects damage back to attackers and applies Grievous Wounds.",
+                    champions: "Malphite, Rammus, Ornn",
+                    reason: "Effective against auto-attack heavy teams."
+                },
+                {
+                    name: "Randuin's Omen",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3143.png",
+                    cost: 3000,
+                    info: "Reduces incoming damage from critical strikes and has an active that slows nearby enemies.",
+                    champions: "Maokai, Sejuani, Shen",
+                    reason: "Provides strong defense against AD carries."
+                },
+                {
+                    name: "Spirit Visage",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3065.png",
+                    cost: 2900,
+                    info: "Increases all healing and shielding received.",
+                    champions: "Dr. Mundo, Sylas, Volibear",
+                    reason: "Amplifies self-healing and tank sustain."
+                },
+                {
+                    name: "Gargoyle Stoneplate",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3193.png",
+                    cost: 3200,
+                    info: "Grants bonus armor and magic resist when near multiple enemies.",
+                    champions: "Leona, Nautilus, Ornn",
+                    reason: "Provides massive defensive stats in teamfights."
+                },
+                {
+                    name: "Frozen Heart",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3110.png",
+                    cost: 2700,
+                    info: "Reduces the attack speed of nearby enemies.",
+                    champions: "Malphite, Nasus, Taric",
+                    reason: "Effective against attack speed-reliant teams."
+                },
+                {
+                    name: "Dead Man's Plate",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3742.png",
+                    cost: 2900,
+                    info: "Grants movement speed and empowers your next attack.",
+                    champions: "Garen, Darius, Volibear",
+                    reason: "Provides mobility and a strong engage tool for tanks."
+                },
+                {
+                    name: "Force of Nature",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/4401.png",
+                    cost: 2900,
+                    info: "Grants magic resistance and movement speed when taking magic damage.",
+                    champions: "Mundo, Maokai, Ornn",
+                    reason: "Excellent against teams with multiple AP threats."
+                }
+            ],
+            magic: [
+                {
+                    name: "Rabadon's Deathcap",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3089.png",
+                    cost: 3600,
+                    info: "Massively increases Ability Power.",
+                    champions: "Veigar, Lux, Syndra",
+                    reason: "Amplifies magic damage output significantly."
+                },
+                {
+                    name: "Void Staff",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3135.png",
+                    cost: 2700,
+                    info: "Grants magic penetration, allowing spells to deal more damage.",
+                    champions: "Brand, Vel'Koz, Xerath",
+                    reason: "Helps overcome enemy magic resistance."
+                },
+                {
+                    name: "Luden's Tempest",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/6655.png",
+                    cost: 3200,
+                    info: "Grants burst of damage and movement speed on ability hit.",
+                    champions: "Ahri, Lux, Zoe",
+                    reason: "Provides mana, cooldown reduction, and extra burst damage."
+                },
+                {
+                    name: "Liandry's Anguish",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/6653.png",
+                    cost: 3200,
+                    info: "Deals bonus damage over time and increases damage against high-health targets.",
+                    champions: "Malzahar, Brand, Cassiopeia",
+                    reason: "Effective against tanky teams and in prolonged fights."
+                },
+                {
+                    name: "Zhonya's Hourglass",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3157.png",
+                    cost: 2600,
+                    info: "Puts your champion into stasis, making them invulnerable and untargetable for 2.5 seconds.",
+                    champions: "Morgana, Fizz, Vladimir",
+                    reason: "Provides crucial survivability for mages in teamfights."
+                },
+                {
+                    name: "Cosmic Drive",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/4629.png",
+                    cost: 3000,
+                    info: "Grants ability haste and movement speed.",
+                    champions: "Vladimir, Ryze, Cassiopeia",
+                    reason: "Provides mobility and cooldown reduction for spell-spamming mages."
+                },
+                {
+                    name: "Horizon Focus",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/4628.png",
+                    cost: 3000,
+                    info: "Amplifies damage against targets hit by abilities from long range or impaired movement.",
+                    champions: "Xerath, Ziggs, Vel'Koz",
+                    reason: "Enhances damage for long-range mages and control mages."
+                },
+                {
+                    name: "Morellonomicon",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3165.png",
+                    cost: 2500,
+                    info: "Applies Grievous Wounds to enemies hit by your abilities.",
+                    champions: "Brand, Zyra, Lillia",
+                    reason: "Counters healing and regeneration effects."
+                },
+                {
+                    name: "Mejai's Soulstealer",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3041.png",
+                    cost: 1600,
+                    info: "Grants stacks of Glory for kills and assists, increasing AP.",
+                    champions: "Katarina, Evelynn, Vladimir",
+                    reason: "High-risk, high-reward item for snowballing champions."
+                }
+            ],
+            physical: [
+                {
+                    name: "Infinity Edge",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3031.png",
+                    cost: 3400,
+                    info: "Greatly increases Attack Damage and Critical Strike Chance.",
+                    champions: "Caitlyn, Jhin, Yasuo",
+                    reason: "Essential for maximizing critical strike damage."
+                },
+                {
+                    name: "Blade of the Ruined King",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3153.png",
+                    cost: 3200,
+                    info: "Deals bonus damage based on the target's current health.",
+                    champions: "Vayne, Lucian, Irelia",
+                    reason: "Effective against high-health targets and provides lifesteal."
+                },
+                {
+                    name: "Youmuu's Ghostblade",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3142.png",
+                    cost: 3000,
+                    info: "Grants movement speed and lethality. Has an active that increases movement speed.",
+                    champions: "Zed, Talon, Qiyana",
+                    reason: "Provides mobility and burst damage for assassins."
+                },
+                {
+                    name: "Duskblade of Draktharr",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/6691.png",
+                    cost: 3200,
+                    info: "Empowers your next attack and grants invisibility after takedowns.",
+                    champions: "Kha'Zix, Pyke, Rengar",
+                    reason: "Enhances burst damage and provides stealth for assassins."
+                },
+                {
+                    name: "Guinsoo's Rageblade",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3124.png",
+                    cost: 2600,
+                    info: "Converts critical strike chance to on-hit damage and applies on-hit effects twice every third attack.",
+                    champions: "Vayne, Kog'Maw, Varus",
+                    reason: "Powerful for on-hit effect builds and attack speed focused champions."
+                },
+                {
+                    name: "Bloodthirster",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3072.png",
+                    cost: 3400,
+                    info: "Grants lifesteal and a shield when at full health.",
+                    champions: "Draven, Samira, Aphelios",
+                    reason: "Provides sustain and survivability for AD carries."
+                },
+                {
+                    name: "Serylda's Grudge",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/6694.png",
+                    cost: 3200,
+                    info: "Grants armor penetration and slows enemies hit by abilities.",
+                    champions: "Jayce, Varus, Graves",
+                    reason: "Effective against armor-stacking enemies and provides utility."
+                },
+                {
+                    name: "The Collector",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/6676.png",
+                    cost: 3000,
+                    info: "Executes enemies below 5% health and grants bonus gold.",
+                    champions: "Jhin, Miss Fortune, Gangplank",
+                    reason: "Provides a strong execute and helps snowball with bonus gold."
+                },
+                {
+                    name: "Essence Reaver",
+                    image: "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/3508.png",
+                    cost: 2900,
+                    info: "Grants bonus damage after using an ability and restores mana.",
+                    champions: "Ezreal, Lucian, Xayah",
+                    reason: "Excellent for AD casters who need mana sustain."
+                }
+            ]
+        };
+
+        const translations = {
+            en: {
+                mainTitle: "League of Legends Items",
+                navChampions: "Champions",
+                navItems: "Items",
+                navLore: "Lore",
+                navTopTier: "Top Tier",
+                navBuffsNerfs: "Buffs & Nerfs",
+                tankItems: "Tank Items",
+                magicItems: "Magic Items",
+                physicalItems: "Physical Items",
+                cost: "Cost",
+                popularChampions: "Popular Champions",
+                reason: "Reason"
+            },
+            es: {
+                mainTitle: "Objetos de League of Legends",
+                navChampions: "Campeones",
+                navItems: "Objetos",
+                navLore: "Historia",
+                navTopTier: "Top Tier",
+                navBuffsNerfs: "Mejoras y Nerfs",
+                tankItems: "Objetos de Tanque",
+                magicItems: "Objetos Mágicos",
+                physicalItems: "Objetos Físicos",
+                cost: "Costo",
+                popularChampions: "Campeones Populares",
+                reason: "Razón"
+            },
+            it: {
+                mainTitle: "Oggetti di League of Legends",
+                navChampions: "Campioni",
+                navItems: "Oggetti",
+                navLore: "Storia",
+                navTopTier: "Top Tier",
+                navBuffsNerfs: "Buff e Nerf",
+                tankItems: "Oggetti da Tank",
+                magicItems: "Oggetti Magici",
+                physicalItems: "Oggetti Fisici",
+                cost: "Costo",
+                popularChampions: "Campioni Popolari",
+                reason: "Motivo"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('main-title').textContent = translations[lang].mainTitle;
+            document.getElementById('nav-champions').textContent = translations[lang].navChampions;
+            document.getElementById('nav-items').textContent = translations[lang].navItems;
+            document.getElementById('nav-lore').textContent = translations[lang].navLore;
+            document.getElementById('nav-top-tier').textContent = translations[lang].navTopTier;
+            document.getElementById('nav-buffs-nerfs').textContent = translations[lang].navBuffsNerfs;
+            
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                const category = btn.getAttribute('data-category');
+                btn.textContent = translations[lang][`${category}Items`];
+            });
+            
+            document.querySelectorAll('.item-section h2').forEach(h2 => {
+                const category = h2.id.split('-')[0];
+                h2.textContent = translations[lang][`${category}Items`];
+            });
+            
+            document.querySelectorAll('.item-cost').forEach(cost => {
+                const goldValue = cost.textContent.split(':')[1].trim();
+                cost.textContent = `${translations[lang].cost}: ${goldValue}`;
+            });
+            
+            document.querySelectorAll('.item-champions strong').forEach(strong => {
+                strong.textContent = `${translations[lang].popularChampions}:`;
+            });
+            
+            document.querySelectorAll('.item-champions strong:last-child').forEach(strong => {
+                strong.textContent = `${translations[lang].reason}:`;
+            });
+        }
+
+        document.getElementById('language-select').addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+
+        function createItemCards(category) {
+            const grid = document.querySelector(`#${category}-items .item-grid`);
+            grid.innerHTML = '';
+            items[category].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-cost">${translations['en'].cost}: ${item.cost} gold</div>
+                    <div class="item-tooltip">
+                        <div class="item-info">${item.info}</div>
+                        <div class="item-champions">
+                            <strong>${translations['en'].popularChampions}:</strong> ${item.champions}<br>
+                            <strong>${translations['en'].reason}:</strong> ${item.reason}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function showCategory(category) {
+            document.querySelectorAll('.item-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(`${category}-items`).style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createItemCards('tank');
+            createItemCards('magic');
+            createItemCards('physical');
+
+            showCategory('tank'); // Show tank items by default
+            changeLanguage('en'); // Set initial language to English
+
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const category = e.target.getAttribute('data-category');
+                    showCategory(category);
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

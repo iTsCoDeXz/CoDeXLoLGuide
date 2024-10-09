@@ -1,0 +1,305 @@
+<html><head><base href="index.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>League of Legends Top Tier</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #0a0a0c;
+        color: #ffffff;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #091428;
+    }
+    h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #c8aa6e;
+    }
+    .logo {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #c8aa6e;
+    }
+    .main-menu {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .main-menu ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+    }
+    .main-menu a {
+        color: #c8aa6e;
+        text-decoration: none;
+        font-size: 1.1em;
+        transition: color 0.3s ease;
+    }
+    .main-menu a:hover {
+        color: #ffffff;
+    }
+    .language-selector {
+        margin-left: 20px;
+    }
+    #language-select, #role-select {
+        background-color: #1e2328;
+        color: #c8aa6e;
+        border: 1px solid #c8aa6e;
+        padding: 5px;
+        font-size: 1em;
+    }
+    .role-selector {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    .tier-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+    }
+    .tier {
+        background-color: #1e2328;
+        border-radius: 10px;
+        padding: 20px;
+    }
+    .tier-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .tier-label {
+        font-size: 1.5em;
+        color: #c8aa6e;
+    }
+    .champions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .champion {
+        background-color: #091428;
+        border-radius: 5px;
+        padding: 5px 10px;
+        color: #ffffff;
+    }
+    .s-tier { background-color: #ff4e50; }
+    .a-tier { background-color: #fc913a; }
+    .b-tier { background-color: #f9d62e; }
+    .c-tier { background-color: #8dc453; }
+    .d-tier { background-color: #62bfed; }
+</style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://raw.githubusercontent.com/Avidip/LOL-Champ-Select/main/assets/logo_lol_icon.png" alt="League of Legends Logo" class="logo">
+            <h1 id="main-title">League of Legends Top Tier</h1>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html" id="nav-champions">Champions</a></li>
+                <li><a href="items.html" id="nav-items">Items</a></li>
+                <li><a href="lore.html" id="nav-lore">Lore</a></li>
+                <li><a href="top-tier.html" id="nav-top-tier">Top Tier</a></li>
+                <li><a href="#buffs-nerfs" id="nav-buffs-nerfs">Buffs & Nerfs</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="it">Italiano</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="role-selector">
+        <select id="role-select">
+            <option value="all" id="role-all">All Roles</option>
+            <option value="top" id="role-top">Top</option>
+            <option value="jungle" id="role-jungle">Jungle</option>
+            <option value="mid" id="role-mid">Mid</option>
+            <option value="adc" id="role-adc">ADC</option>
+            <option value="support" id="role-support">Support</option>
+        </select>
+    </div>
+
+    <div class="tier-list" id="tier-list"></div>
+
+    <script>
+        const tierList = {
+            all: {
+                "S": ["Yasuo", "Ahri", "Garen"],
+                "A": ["Akali", "Lux", "Ashe"],
+                "B": ["Darius", "Jinx", "Leona"],
+                "C": ["Thresh", "Ezreal", "Caitlyn"],
+                "D": ["Yuumi", "Teemo", "Shaco"]
+            },
+            top: {
+                "S": ["Garen", "Darius"],
+                "A": ["Fiora", "Riven"],
+                "B": ["Shen", "Ornn"],
+                "C": ["Malphite", "Sion"],
+                "D": ["Teemo", "Quinn"]
+            },
+            jungle: {
+                "S": ["Lee Sin", "Elise"],
+                "A": ["Kha'Zix", "Evelynn"],
+                "B": ["Jarvan IV", "Rammus"],
+                "C": ["Amumu", "Nunu"],
+                "D": ["Ivern", "Shaco"]
+            },
+            mid: {
+                "S": ["Yasuo", "Ahri"],
+                "A": ["Zed", "Syndra"],
+                "B": ["Orianna", "Twisted Fate"],
+                "C": ["Veigar", "Annie"],
+                "D": ["Ryze", "Azir"]
+            },
+            adc: {
+                "S": ["Jinx", "Kai'Sa"],
+                "A": ["Ashe", "Caitlyn"],
+                "B": ["Ezreal", "Vayne"],
+                "C": ["Jhin", "Miss Fortune"],
+                "D": ["Kog'Maw", "Kalista"]
+            },
+            support: {
+                "S": ["Thresh", "Leona"],
+                "A": ["Lulu", "Nautilus"],
+                "B": ["Morgana", "Blitzcrank"],
+                "C": ["Janna", "Soraka"],
+                "D": ["Yuumi", "Sona"]
+            }
+        };
+
+        const translations = {
+            en: {
+                mainTitle: "League of Legends Top Tier",
+                tierLabels: {
+                    "S": "God Tier",
+                    "A": "Strong",
+                    "B": "Balanced",
+                    "C": "Situational",
+                    "D": "Weak"
+                },
+                roles: {
+                    all: "All Roles",
+                    top: "Top",
+                    jungle: "Jungle",
+                    mid: "Mid",
+                    adc: "ADC",
+                    support: "Support"
+                }
+            },
+            es: {
+                mainTitle: "Liga de Leyendas - Nivel Superior",
+                tierLabels: {
+                    "S": "Nivel Dios",
+                    "A": "Fuerte",
+                    "B": "Equilibrado",
+                    "C": "Situacional",
+                    "D": "Débil"
+                },
+                roles: {
+                    all: "Todos los Roles",
+                    top: "Superior",
+                    jungle: "Jungla",
+                    mid: "Medio",
+                    adc: "Tirador",
+                    support: "Apoyo"
+                }
+            },
+            it: {
+                mainTitle: "League of Legends - Livello Superiore",
+                tierLabels: {
+                    "S": "Livello Dio",
+                    "A": "Forte",
+                    "B": "Bilanciato",
+                    "C": "Situazionale",
+                    "D": "Debole"
+                },
+                roles: {
+                    all: "Tutti i Ruoli",
+                    top: "Top",
+                    jungle: "Giungla",
+                    mid: "Centro",
+                    adc: "ADC",
+                    support: "Supporto"
+                }
+            }
+        };
+
+        function updateTierList(lang, role) {
+            const tierListElement = document.getElementById('tier-list');
+            tierListElement.innerHTML = '';
+
+            Object.entries(tierList[role]).forEach(([tier, champions]) => {
+                const tierElement = document.createElement('div');
+                tierElement.className = 'tier';
+
+                const tierHeader = document.createElement('div');
+                tierHeader.className = 'tier-header';
+
+                const tierLabel = document.createElement('span');
+                tierLabel.className = 'tier-label';
+                tierLabel.textContent = `${tier} - ${translations[lang].tierLabels[tier]}`;
+
+                tierHeader.appendChild(tierLabel);
+                tierElement.appendChild(tierHeader);
+
+                const championsElement = document.createElement('div');
+                championsElement.className = 'champions';
+
+                champions.forEach(champion => {
+                    const championElement = document.createElement('span');
+                    championElement.className = `champion ${tier.toLowerCase()}-tier`;
+                    championElement.textContent = champion;
+                    championsElement.appendChild(championElement);
+                });
+
+                tierElement.appendChild(championsElement);
+                tierListElement.appendChild(tierElement);
+            });
+        }
+
+        function changeLanguage(lang) {
+            document.getElementById('main-title').textContent = translations[lang].mainTitle;
+            const roleSelect = document.getElementById('role-select');
+            Array.from(roleSelect.options).forEach(option => {
+                option.textContent = translations[lang].roles[option.value];
+            });
+            updateTierList(lang, roleSelect.value);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageSelect = document.getElementById('language-select');
+            const roleSelect = document.getElementById('role-select');
+
+            languageSelect.addEventListener('change', (e) => {
+                changeLanguage(e.target.value);
+            });
+
+            roleSelect.addEventListener('change', (e) => {
+                updateTierList(languageSelect.value, e.target.value);
+            });
+
+            changeLanguage('en');
+        });
+    </script>
+</body>
+</html>
