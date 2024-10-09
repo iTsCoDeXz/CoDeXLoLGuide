@@ -1,0 +1,534 @@
+<html><head><base href="https://champion.html?name=Aatrox">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aatrox - The Darkin Blade</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-color: #c8aa6e;
+        --secondary-color: #091428;
+        --background-color: #0a0a0c;
+        --text-color: #ffffff;
+    }
+
+    body {
+        font-family: 'Fira Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    header {
+        background-color: var(--secondary-color);
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.3;
+        z-index: 0;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 4em;
+        color: var(--primary-color);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        position: relative;
+        z-index: 1;
+    }
+
+    .game-switch {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        color: var(--text-color);
+        z-index: 2;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        margin: 0 10px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--secondary-color);
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: var(--primary-color);
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: var(--secondary-color);
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .pc-content, .wr-content {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .champion-info {
+        display: flex;
+        margin-top: 20px;
+        align-items: center;
+    }
+
+    .champion-image {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(200, 170, 110, 0.3);
+    }
+
+    .champion-image img {
+        max-width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .champion-image:hover img {
+        transform: scale(1.05);
+    }
+
+    .champion-details {
+        flex: 2;
+        margin-left: 40px;
+        background-color: rgba(30, 35, 40, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .abilities {
+        margin-top: 40px;
+    }
+
+    .ability {
+        background-color: rgba(30, 35, 40, 0.8);
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .ability:hover {
+        transform: translateY(-5px);
+    }
+
+    .ability h3 {
+        margin-top: 0;
+        color: var(--primary-color);
+    }
+
+    .builds, .runes, .counters, .combos {
+        margin-top: 40px;
+    }
+
+    .build-item, .rune-item, .counter-item, .combo {
+        background-color: rgba(30, 35, 40, 0.8);
+        margin-bottom: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .build-item:hover, .rune-item:hover, .counter-item:hover, .combo:hover {
+        transform: translateY(-5px);
+    }
+
+    #back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1em;
+        border-radius: 5px;
+        z-index: 2;
+        transition: background-color 0.3s ease;
+    }
+
+    #back-btn:hover {
+        background-color: #d4b872;
+    }
+
+    .ability-video {
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .section-title {
+        color: var(--primary-color);
+        font-size: 2em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .item-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+
+    .item {
+        background-color: rgba(30, 35, 40, 0.8);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .item:hover {
+        transform: translateY(-5px);
+    }
+
+    .item img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(200, 170, 110, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(200, 170, 110, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(200, 170, 110, 0);
+        }
+    }
+
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <button id="back-btn" onclick="window.location.href='index.html'">Back to Champions</button>
+        <h1>Aatrox</h1>
+        <div class="game-switch">
+            <span>PC</span>
+            <label class="switch">
+                <input type="checkbox" id="gameToggle">
+                <span class="slider round"></span>
+            </label>
+            <span>Wild Rift</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="pc-content">
+            <div class="champion-info">
+                <div class="champion-image pulse">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg" alt="Aatrox">
+                </div>
+                <div class="champion-details">
+                    <h2>The Darkin Blade</h2>
+                    <p>Aatrox is a legendary warrior, one of only five that remain of an ancient race known as the Darkin. He wields his massive blade with grace and poise, slicing through legions in a style that is hypnotic to behold.</p>
+                    <p><strong>Role:</strong> Fighter, Tank</p>
+                    <p><strong>Difficulty:</strong> Moderate</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Abilities</h2>
+            <div class="abilities">
+                <div class="ability">
+                    <h3>Passive: Deathbringer Stance</h3>
+                    <p>Periodically, Aatrox's next basic attack deals bonus physical damage and heals him, based on the target's max health.</p>
+                    <video class="ability-video" controls>
+                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_P1.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="ability">
+                    <h3>Q: The Darkin Blade</h3>
+                    <p>Aatrox slams his greatsword down, dealing physical damage. He can swing three times, each with a different area of effect.</p>
+                    <video class="ability-video" controls>
+                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_Q1.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="ability">
+                    <h3>W: Infernal Chains</h3>
+                    <p>Aatrox smashes the ground, dealing damage to the first enemy hit. Champions and large monsters have to leave the impact area quickly or they will be dragged to the center and take the damage again.</p>
+                    <video class="ability-video" controls>
+                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_W1.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="ability">
+                    <h3>E: Umbral Dash</h3>
+                    <p>Passively, Aatrox heals for a portion of the damage he deals. On activation, he dashes in a direction.</p>
+                    <video class="ability-video" controls>
+                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_E1.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="ability">
+                    <h3>R: World Ender</h3>
+                    <p>Aatrox unleashes his demonic form, fearing nearby enemy minions and gaining increased movement speed, attack damage, and healing. If he gets a takedown, this effect is extended.</p>
+                    <video class="ability-video" controls>
+                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_R1.webm" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <h2 class="section-title">Recommended Builds</h2>
+            <div class="builds">
+                <div class="build-item">
+                    <h3>Bruiser Build</h3>
+                    <div class="item-grid">
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/6630.png" alt="Goredrinker">
+                            <p>Goredrinker</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/3071.png" alt="Black Cleaver">
+                            <p>Black Cleaver</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/3053.png" alt="Sterak's Gage">
+                            <p>Sterak's Gage</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/3026.png" alt="Guardian Angel">
+                            <p>Guardian Angel</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/3065.png" alt="Spirit Visage">
+                            <p>Spirit Visage</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="build-item">
+                    <h3>Full Damage Build</h3>
+                    <div class="item-grid">
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/6692.png" alt="Eclipse">
+                            <p>Eclipse</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/3142.png" alt="Youmuu's Ghostblade">
+                            <p>Youmuu's Ghostblade</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/6694.png" alt="Serylda's Grudge">
+                            <p>Serylda's Grudge</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/6333.png" alt="Death's Dance">
+                            <p>Death's Dance</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/item/3026.png" alt="Guardian Angel">
+                            <p>Guardian Angel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Recommended Runes</h2>
+            <div class="runes">
+                <div class="rune-item">
+                    <h3>Conqueror Build</h3>
+                    <div class="item-grid">
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Conqueror/Conqueror.png" alt="Conqueror">
+                            <p>Conqueror</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Triumph/Triumph.png" alt="Triumph">
+                            <p>Triumph</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LegendTenacity/LegendTenacity.png" alt="Legend: Tenacity">
+                            <p>Legend: Tenacity</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LastStand/LastStand.png" alt="Last Stand">
+                            <p>Last Stand</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/TasteOfBlood/TasteOfBlood.png" alt="Taste of Blood">
+                            <p>Taste of Blood</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/RavenousHunter/RavenousHunter.png" alt="Ravenous Hunter">
+                            <p>Ravenous Hunter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Matchups</h2>
+            <div class="counters">
+                <div class="counter-item">
+                    <h3>Strong Against</h3>
+                    <div class="item-grid">
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Irelia.png" alt="Irelia">
+                            <p>Irelia</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Riven.png" alt="Riven">
+                            <p>Riven</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Yasuo.png" alt="Yasuo">
+                            <p>Yasuo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="counter-item">
+                    <h3>Weak Against</h3>
+                    <div class="item-grid">
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Fiora.png" alt="Fiora">
+                            <p>Fiora</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Jax.png" alt="Jax">
+                            <p>Jax</p>
+                        </div>
+                        <div class="item">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/Pantheon.png" alt="Pantheon">
+                            <p>Pantheon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Common Combos</h2>
+            <div class="combos">
+                <div class="combo">
+                    <h3>Basic Combo</h3>
+                    <p>E > Q1 > W > Q2 > E > Q3</p>
+                </div>
+                <div class="combo">
+                    <h3>All-in Combo</h3>
+                    <p>R > E > Q1 > W > Q2 > E > Q3</p>
+                </div>
+            </div>
+        </div>
+        <div class="wr-content">
+            <div class="champion-info">
+                <div class="champion-image pulse">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg" alt="Aatrox">
+                </div>
+                <div class="champion-details">
+                    <h2>The Darkin Blade</h2>
+                    <p>Aatrox is a legendary warrior in Wild Rift, wielding his massive blade with deadly precision.</p>
+                    <p><strong>Role:</strong> Fighter, Tank</p>
+                    <p><strong>Difficulty:</strong> Moderate</p>
+                    <p><strong>Lane:</strong> Baron Lane</p>
+                </div>
+            </div>
+            <!-- Add Wild Rift specific abilities, builds, runes, etc. -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const gameToggle = document.getElementById('gameToggle');
+            const pcContent = document.querySelector('.pc-content');
+            const wrContent = document.querySelector('.wr-content');
+
+            function toggleContent() {
+                if (gameToggle.checked) {
+                    pcContent.classList.remove('show');
+                    wrContent.classList.add('show');
+                } else {
+                    pcContent.classList.add('show');
+                    wrContent.classList.remove('show');
+                }
+            }
+
+            gameToggle.addEventListener('change', toggleContent);
+
+            // Initialize content display
+            toggleContent();
+
+            const abilities = document.querySelectorAll('.ability');
+            abilities.forEach(ability => {
+                ability.addEventListener('mouseover', () => {
+                    ability.classList.add('pulse');
+                });
+                ability.addEventListener('mouseout', () => {
+                    ability.classList.remove('pulse');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
