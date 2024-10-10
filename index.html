@@ -83,6 +83,19 @@
         cursor: pointer;
         font-size: 1em;
     }
+    .search-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    #champion-search {
+        width: 300px;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #c8aa6e;
+        background-color: #0a0a0c;
+        color: #ffffff;
+    }
     .champion-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -137,6 +150,10 @@
         cursor: pointer;
         font-size: 1em;
         transition: all 0.3s ease;
+    }
+    .role-btn.active {
+        background-color: #c8aa6e;
+        color: #0a0a0c;
     }
     .role-btn:hover {
         background-color: #c8aa6e;
@@ -234,8 +251,12 @@
         <button id="account-btn">Account</button>
     </header>
 
+    <div class="search-container">
+        <input type="text" id="champion-search" placeholder="Search champions...">
+    </div>
+
     <div class="role-menu">
-        <button class="role-btn" data-role="all">All</button>
+        <button class="role-btn active" data-role="all">All</button>
         <button class="role-btn" data-role="top">Top</button>
         <button class="role-btn" data-role="jungle">Jungle</button>
         <button class="role-btn" data-role="mid">Mid</button>
@@ -512,14 +533,29 @@
 
         createChampionCards(champions);
 
+        const championSearch = document.getElementById('champion-search');
+
+        function filterChampions() {
+            const searchQuery = championSearch.value.toLowerCase();
+            const selectedRole = document.querySelector('.role-btn.active')?.getAttribute('data-role') || 'all';
+
+            const filteredChampions = champions.filter(champion => {
+                const nameMatch = champion.name.toLowerCase().includes(searchQuery);
+                const roleMatch = selectedRole === 'all' || champion.roles.includes(selectedRole);
+                return nameMatch && roleMatch;
+            });
+
+            createChampionCards(filteredChampions);
+        }
+
+        championSearch.addEventListener('input', filterChampions);
+
         const roleButtons = document.querySelectorAll('.role-btn');
         roleButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const role = button.getAttribute('data-role');
-                const filteredChampions = role === 'all' 
-                    ? champions 
-                    : champions.filter(champion => champion.roles.includes(role));
-                createChampionCards(filteredChampions);
+                roleButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterChampions();
             });
         });
 
@@ -652,6 +688,9 @@
                 alert('Please login to save favorites');
             }
         }
+
+        // Initial call to create all champion cards
+        filterChampions();
     </script>
 </body>
 </html>
